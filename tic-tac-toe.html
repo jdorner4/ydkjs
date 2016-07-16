@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YDKJS Getting Started</title>
+ <style>
+  .cell {
+      width:3em;
+      height:1em;
+      border:1px solid black;
+      float:left;
+      text-align:center;
+      font-size:3em;
+      padding:.5em 0 .5em; }
+   #turn {
+       font-size:3em;
+   }
+ </style>
+
+    <script>
+        function selectCell(newColor) {
+            var currentUser = document.getElementById('current');
+            var id = this.event.target.id;
+            var elem = document.getElementById(id);
+            switch (currentUser.innerHTML) {
+                case "X":
+                    user = "X";
+                    currentUser.innerHTML = "O";
+                    break;
+                case "O":
+                    user = "O";
+                    currentUser.innerHTML = "X";
+                    break;
+            }
+            elem.innerHTML = user;
+        }
+    </script>
+</head>
+<body>
+
+<div id="turn">User's Turn: <span id="current">X</span></div>
+
+<div id="aa" class="cell" onclick="selectCell();"></div>
+<div id="ab" class="cell" onclick="selectCell();"></div>
+<div id="ac" class="cell" onclick="selectCell();"></div>
+
+<div style="clear:both;"></div>
+
+<div id="ba" class="cell" onclick="selectCell();"></div>
+<div id="bb" class="cell" onclick="selectCell();"></div>
+<div id="bc" class="cell" onclick="selectCell();"></div>
+
+<div style="clear:both;"></div>
+
+<div id="ca" class="cell" onclick="selectCell();"></div>
+<div id="cb" class="cell" onclick="selectCell();"></div>
+<div id="cc" class="cell" onclick="selectCell();"></div>
+
+
+</body>
+</html>
+
