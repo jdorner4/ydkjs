@@ -17,8 +17,12 @@
  </style>
 
     <script>
+
+        var numMoves = 0;
+
         function selectCell() {
             var currentUser = document.getElementById('current');
+            numMoves++;
 
             if( currentUser == null ) { // someone has alreay won
                 return false;
@@ -45,6 +49,9 @@
                 document.getElementById("turn").innerHTML = user + " WINS!";
                 document.getElementById("new-game").innerHTML = "<a href='#' onclick='location.reload()'>Play another game?</a>";
                 alert(user+" WINS");
+            } else if ( numMoves == 9 ) {
+                document.getElementById("turn").innerHTML = "Tie game.";
+                document.getElementById("new-game").innerHTML = "<a href='#' onclick='location.reload()'>Play another game?</a>";
             }
         }
 
