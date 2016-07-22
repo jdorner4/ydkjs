@@ -20,7 +20,8 @@
 
         var numMoves = 0;
 
-        function selectCell() {
+        function selectCell(event) {
+
             var currentUser = document.getElementById('current');
             numMoves++;
 
@@ -28,8 +29,8 @@
                 return false;
             }
 
-            var id = this.event.target.id;
-            var elem = document.getElementById(id);
+            var id = event.target.id;
+                var elem = document.getElementById(id);
             if( userCanChangeCell(currentUser,id)) {
                 switch (currentUser.innerHTML) {
                     case "X":
@@ -131,24 +132,23 @@
 
 <div id="turn">User's Turn: <span id="current">X</span></div>
 
-<div id="aa" class="cell" onclick="selectCell();"></div>
-<div id="ab" class="cell" onclick="selectCell();"></div>
-<div id="ac" class="cell" onclick="selectCell();"></div>
+<div id="aa" class="cell" onclick="selectCell(event);"></div>
+<div id="ab" class="cell" onclick="selectCell(event);"></div>
+<div id="ac" class="cell" onclick="selectCell(event);"></div>
 
 <div style="clear:both;"></div>
 
-<div id="ba" class="cell" onclick="selectCell();"></div>
-<div id="bb" class="cell" onclick="selectCell();"></div>
-<div id="bc" class="cell" onclick="selectCell();"></div>
+<div id="ba" class="cell" onclick="selectCell(event);"></div>
+<div id="bb" class="cell" onclick="selectCell(event);"></div>
+<div id="bc" class="cell" onclick="selectCell(event);"></div>
 
 <div style="clear:both;"></div>
 
-<div id="ca" class="cell" onclick="selectCell();"></div>
-<div id="cb" class="cell" onclick="selectCell();"></div>
-<div id="cc" class="cell" onclick="selectCell();"></div>
+<div id="ca" class="cell" onclick="selectCell(event);"></div>
+<div id="cb" class="cell" onclick="selectCell(event);"></div>
+<div id="cc" class="cell" onclick="selectCell(event);"></div>
 
 <div id="new-game" style="clear:both;font-size:3em;"></div>
 
 </body>
 </html>
-
