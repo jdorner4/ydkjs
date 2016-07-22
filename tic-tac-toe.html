@@ -16,139 +16,144 @@
    }
  </style>
 
-    <script>
 
-        var numMoves = 0;
-
-        function selectCell(event) {
-
-            var currentUser = document.getElementById('current');
-            numMoves++;
-
-            if( currentUser == null ) { // someone has alreay won
-                return false;
-            }
-
-            var id = event.target.id;
-                var elem = document.getElementById(id);
-            if( userCanChangeCell(currentUser,id)) {
-                switch (currentUser.innerHTML) {
-                    case "X":
-                        user = "X";
-                        currentUser.innerHTML = "O";
-                        break;
-                    case "O":
-                        user = "O";
-                        currentUser.innerHTML = "X";
-                        break;
-                }
-                elem.innerHTML = user;
-            } else {
-                alert("You can't have that cell.");
-            }
-            if( didUserWin(user)){
-                document.getElementById("turn").innerHTML = user + " WINS!";
-                document.getElementById("new-game").innerHTML = "<a href='#' onclick='location.reload()'>Play another game?</a>";
-                alert(user+" WINS");
-            } else if ( numMoves == 9 ) {
-                document.getElementById("turn").innerHTML = "Tie game.";
-                document.getElementById("new-game").innerHTML = "<a href='#' onclick='location.reload()'>Play another game?</a>";
-            }
-        }
-
-        function userCanChangeCell(user, cellID) {
-            if( document.getElementById(cellID).innerHTML == ''  ) {
-                return true;
-            }
-            return false;
-        }
-        function didUserWin(user) {
-            var row1 = [
-                aa,
-                ab,
-                ac,
-            ];
-            var row2 = [
-                ba,
-                bb,
-                bc,
-            ];
-            var row3 = [
-                ca,
-                cb,
-                cc,
-            ];
-            var col1 = [
-                aa,
-                ba,
-                ca,
-            ];
-            var col2 = [
-                ab,
-                bb,
-                cb,
-            ];
-            var col3 = [
-                ac,
-                bc,
-                cc,
-            ];
-            var diag1 = [
-                aa,
-                bb,
-                cc,
-            ];
-            var diag2 = [
-                ac,
-                bb,
-                ca,
-            ];
-            var winningCombinations = [
-                row1,
-                row2,
-                row3,
-                col1,
-                col2,
-                col3,
-                diag1,
-                diag2,
-            ];
-            for (var i = 0; i < winningCombinations.length; i++) {
-                var count=0;
-                for( j=0; j < winningCombinations[i].length; j++ ) {
-                    if(winningCombinations[i][j].innerHTML == user) {
-                        count++;
-                        if( count == 3 ) {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-    </script>
 </head>
 <body>
 
 <div id="turn">User's Turn: <span id="current">X</span></div>
 
-<div id="aa" class="cell" onclick="selectCell(event);"></div>
-<div id="ab" class="cell" onclick="selectCell(event);"></div>
-<div id="ac" class="cell" onclick="selectCell(event);"></div>
+<div id="aa" class="cell"></div>
+<div id="ab" class="cell"></div>
+<div id="ac" class="cell"></div>
 
 <div style="clear:both;"></div>
 
-<div id="ba" class="cell" onclick="selectCell(event);"></div>
-<div id="bb" class="cell" onclick="selectCell(event);"></div>
-<div id="bc" class="cell" onclick="selectCell(event);"></div>
+<div id="ba" class="cell"></div>
+<div id="bc" class="cell"></div>
+<div id="bb" class="cell"></div>
 
 <div style="clear:both;"></div>
 
-<div id="ca" class="cell" onclick="selectCell(event);"></div>
-<div id="cb" class="cell" onclick="selectCell(event);"></div>
-<div id="cc" class="cell" onclick="selectCell(event);"></div>
+<div id="ca" class="cell"></div>
+<div id="cb" class="cell"></div>
+<div id="cc" class="cell"></div>
 
 <div id="new-game" style="clear:both;font-size:3em;"></div>
 
+<script>
+
+    var numMoves = 0;
+
+    var cells = document.querySelectorAll('.cell');
+    for(var i=0; i<cells.length; i++ ) {
+        cells[i].addEventListener('click', selectCell);
+    }
+
+    function selectCell(event) {
+        var currentUser = document.getElementById('current');
+        numMoves++;
+
+        if( currentUser == null ) { // someone has alreay won
+            return false;
+        }
+
+        var id = event.target.id;
+        var elem = document.getElementById(id);
+        if( userCanChangeCell(currentUser,id)) {
+            switch (currentUser.innerHTML) {
+                case "X":
+                    user = "X";
+                    currentUser.innerHTML = "O";
+                    break;
+                case "O":
+                    user = "O";
+                    currentUser.innerHTML = "X";
+                    break;
+            }
+            elem.innerHTML = user;
+        } else {
+            alert("You can't have that cell.");
+        }
+        if( didUserWin(user)){
+            document.getElementById("turn").innerHTML = user + " WINS!";
+            document.getElementById("new-game").innerHTML = "<a href='#' onclick='location.reload()'>Play another game?</a>";
+            alert(user+" WINS");
+        } else if ( numMoves == 9 ) {
+            document.getElementById("turn").innerHTML = "Tie game.";
+            document.getElementById("new-game").innerHTML = "<a href='#' onclick='location.reload()'>Play another game?</a>";
+        }
+    }
+
+    function userCanChangeCell(user, cellID) {
+        if( document.getElementById(cellID).innerHTML == ''  ) {
+            return true;
+        }
+        return false;
+    }
+    function didUserWin(user) {
+        var row1 = [
+            aa,
+            ab,
+            ac,
+        ];
+        var row2 = [
+            ba,
+            bb,
+            bc,
+        ];
+        var row3 = [
+            ca,
+            cb,
+            cc,
+        ];
+        var col1 = [
+            aa,
+            ba,
+            ca,
+        ];
+        var col2 = [
+            ab,
+            bb,
+            cb,
+        ];
+        var col3 = [
+            ac,
+            bc,
+            cc,
+        ];
+        var diag1 = [
+            aa,
+            bb,
+            cc,
+        ];
+        var diag2 = [
+            ac,
+            bb,
+            ca,
+        ];
+        var winningCombinations = [
+            row1,
+            row2,
+            row3,
+            col1,
+            col2,
+            col3,
+            diag1,
+            diag2,
+        ];
+        for (var i = 0; i < winningCombinations.length; i++) {
+            var count=0;
+            for( j=0; j < winningCombinations[i].length; j++ ) {
+                if(winningCombinations[i][j].innerHTML == user) {
+                    count++;
+                    if( count == 3 ) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+</script>
 </body>
 </html>
